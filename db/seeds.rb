@@ -21,5 +21,5 @@ end
 
   flight.departure = Airport.all.sample
   flight.arrival = Airport.where.not(id: flight.departure.id).all.sample
-  flight.save!
+  flight.save
 end
