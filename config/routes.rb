@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :information
   resources :flights
-  root to: "flights#index"
-  
+  root to: 'flights#index'
+
   devise_for :users
   resources :airports
   resources :billings
