@@ -33,3 +33,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# files I want to ignore 
+.byebug_history
+.gitignore

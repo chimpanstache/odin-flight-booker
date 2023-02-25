@@ -2,10 +2,22 @@
 
 <h1>Flights</h1>
 
+
 <%= form_with url: "/flights", method: :get do |form| %>
-  <%= form.label :query, "Search for:" %>
-  <%= form.text_field :query %>
+  <%= 'Departure Airport :' %>
+  <%= form.collection_select :departure_id, @departures, :code, :city %>
+  <br>
+  <%= 'Arrival Airport :' %>
+  <%= form.collection_select :arrival_id, @arrivals, :code, :city %>
+  <br>
+  <%= 'How many passengers : ' %>
+  <%= form.select :passengers, [1,2,3,4] %>
+  <br>
+  <%= 'Date : ' %>
+  <%= form.select :flight_date, options_for_select(@dates) %>
+  <br>
   <%= form.submit "Search" %>
 <% end %>
 
-<%= link_to "New flight", new_flight_path %>
+
+

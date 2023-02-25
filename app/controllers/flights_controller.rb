@@ -3,8 +3,12 @@ class FlightsController < ApplicationController
 
   # GET /flights or /flights.json
   def index
+    @flight = Flight.new
     @flights = Flight.all
-    @available_dates = @flights.map { |fli| fli.time }
+    @departures = @flights.map { |fli| fli.departure }.uniq
+    @arrivals = @flights.map { |fli| fli.arrival }.uniq
+    times = @flights.map { |fli| fli.time.strftime("%Y/%m/%d") }.uniq.sort
+    @dates = times.map { |time| [time, time] }
   end
 
   # GET /flights/1 or /flights/1.json
