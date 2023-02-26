@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :flights, through: :informations
-  has_many :billings
+  has_many :informations, inverse_of: :user
+  has_many :bookings, through: :informations
 end

@@ -1,4 +1,6 @@
 class Booking < ApplicationRecord
-  belongs_to :passenger, class_name: 'User'
+  has_many :passenger, class_name: 'User'
   belongs_to :flight
+  has_many :informations, inverse_of: :booking
+  has_many :passengers, through: :informations, foreign_key: 'passenger_id', class_name: 'User'
 end
