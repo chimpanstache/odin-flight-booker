@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :bookings
-  resources :flights
+  resources :flights, only: [:index]
   root to: 'flights#index'
 
   devise_for :users
