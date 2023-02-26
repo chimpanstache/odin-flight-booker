@@ -8,15 +8,15 @@
 Flight.delete_all
 Airport.delete_all
 
-15.times do
+2.times do
   Airport.create(country: Faker::Address.country,
                  city: Faker::Address.city,
                  name: Faker::Name.unique.name,
                  code: [*'A'..'Z'].sample(3).join)
 end
 
-100.times do
-  flight = Flight.new(time: rand(1..360).days.from_now,
+1000.times do
+  flight = Flight.new(time: rand(1..7).day.from_now.to_date,
                       max_passenger: rand(60..500),
                       passenger_count: 0,
                       duration_min: rand(45..900))

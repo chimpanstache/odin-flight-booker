@@ -1,4 +1,4 @@
-class InformationController < ApplicationController
+class BookingsController < ApplicationController
   before_action :set_information, only: %i[ show edit update destroy ]
 
   # GET /information or /information.json
@@ -12,7 +12,7 @@ class InformationController < ApplicationController
 
   # GET /information/new
   def new
-    @information = Information.new
+    @booking = Booking.new
   end
 
   # GET /information/1/edit

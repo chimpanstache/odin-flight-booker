@@ -1,22 +1,29 @@
-<p style="color: green"><%= notice %></p>
 
 <h1>Flights</h1>
 
-
-<%= form_with url: "/flights", method: :get do |form| %>
+<%= form_with url: '/flights', method: :get do |form| %>
   <%= 'Departure Airport :' %>
-  <%= form.collection_select :departure_id, @departures, :code, :city %>
-  <br>
+  <%= form.collection_select :departure_id, @departures, :id, :city %><br>
   <%= 'Arrival Airport :' %>
-  <%= form.collection_select :arrival_id, @arrivals, :code, :city %>
-  <br>
+  <%= form.collection_select :arrival_id, @arrivals, :id, :city %><br>
   <%= 'How many passengers : ' %>
-  <%= form.select :passengers, [1,2,3,4] %>
-  <br>
+  <%= form.select :passengers, [1,2,3,4] %><br>
   <%= 'Date : ' %>
-  <%= form.select :flight_date, options_for_select(@dates) %>
-  <br>
+  <%= form.select :date, options_for_select(@dates) %><br>
   <%= form.submit "Search" %>
+<% end %><br><br>
+
+<% if params[:departure_id].present? %>
+  <h3>Flights available</h3><br>
+  <% if @results.empty? %>
+    <%= 'There is currently no flight available' %>
+  <% else %>
+    <%= form_with url: '/bookings/new', method: :get do |form| %>
+
+      <%= form.collection_radio_buttons :flight, @results.order(:id), :id, :id %>
+      <%= form.submit "Select" %>
+    <% end %>
+  <% end %>
 <% end %>
 
 
