@@ -20,7 +20,8 @@
   <% else %>
     <%= form_with url: '/bookings/new', method: :get do |form| %>
 
-      <%= form.collection_radio_buttons :flight, @results.order(:id), :id, :id %>
+      <%= form.collection_radio_buttons :flight_id, @results.order(:id), :id, :id %>
+      <%= form.hidden_field :passengers, value: params[:passengers] %>
       <%= form.submit "Select" %>
     <% end %>
   <% end %>
