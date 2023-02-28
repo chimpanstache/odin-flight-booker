@@ -1,10 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @information %>
+<%= "Booking: #{@booking.id}" %><br><br>
+<%= "Flight: #{@booking.flight_id}" %><br><br>
+<% @booking.passengers.each do |passenger| %>
+  <%= "Passenger Name: #{passenger.name}" %><br><br>
+  <%= "Passenger Email: #{passenger.email}" %><br><br>
+<% end %>
 
-<div>
-  <%= link_to "Edit this information", edit_information_path(@information) %> |
-  <%= link_to "Back to information", information_index_path %>
 
-  <%= button_to "Destroy this information", @information, method: :delete %>
-</div>

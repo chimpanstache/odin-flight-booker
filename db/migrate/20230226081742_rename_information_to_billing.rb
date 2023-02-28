@@ -1,5 +1,5 @@
 class RenameInformationToBilling < ActiveRecord::Migration[7.0]
   def change
-    rename_table :information, :billing
+    # rename_table :information, :billing 
   end
 end

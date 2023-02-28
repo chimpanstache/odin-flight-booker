@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_160201) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_28_220633) do
   create_table "airports", force: :cascade do |t|
     t.string "country"
     t.string "city"
@@ -18,6 +18,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_160201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "code"
+  end
+
+  create_table "billing", force: :cascade do |t|
+    t.integer "flight_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "passenger_id"
+    t.index ["flight_id"], name: "index_billing_on_flight_id"
   end
 
   create_table "billings", force: :cascade do |t|
@@ -31,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_160201) do
   end
 
   create_table "bookings", force: :cascade do |t|
+    t.date "expiration_date"
     t.integer "flight_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,30 +59,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_160201) do
     t.index ["departure_id"], name: "index_flights_on_departure_id"
   end
 
+  create_table "information", force: :cascade do |t|
+    t.integer "passenger_id", null: false
+    t.integer "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "informations", force: :cascade do |t|
     t.integer "passenger_id"
     t.integer "booking_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["booking_id"], name: "index_informations_on_booking_id"
     t.index ["passenger_id"], name: "index_informations_on_passenger_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "billings", "users", column: "passenger_id"
   add_foreign_key "flights", "airports", column: "arrival_id"
   add_foreign_key "flights", "airports", column: "departure_id"
-  add_foreign_key "informations", "user", column: "passenger_id"
+  add_foreign_key "informations", "bookings"
+  add_foreign_key "informations", "users", column: "passenger_id"
 end

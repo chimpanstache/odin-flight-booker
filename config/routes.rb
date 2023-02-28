@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :flights, only: [:index]
   root to: 'flights#index'
 
-  devise_for :users
+  resource :users
   resources :airports
   resources :billings
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

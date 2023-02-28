@@ -1,12 +1,11 @@
 class BookingsController < ApplicationController
-  before_action :set_information, only: %i[show edit update destroy]
-
   # GET /information or /information.json
   def index; end
 
   # GET /information/1 or /information/1.json
   def show
-
+    byebug
+    @booking = Booking.find(params[:id])
   end
 
   # GET /information/new
@@ -21,10 +20,11 @@ class BookingsController < ApplicationController
 
   # POST /information or /information.json
   def create
+    byebug
     @booking = Booking.new(passenger_params)
-    
+  
     if @booking.save
-      redirect_to show
+      redirect_to @booking
     else
       render 'new'
     end
@@ -56,7 +56,7 @@ class BookingsController < ApplicationController
   private
 
   def passenger_params
-    params.require(:booking).permit(passengers_attributes: %i[email name])
+    params.require(:booking).permit(:flight_id, passengers_attributes: [:email, :name])
   end
 
   # Only allow a list of trusted parameters through.

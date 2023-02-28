@@ -6,7 +6,7 @@
   <%= "Chosen airport arrival: #{@flight.arrival.name}" %><br><br>
 <% end %>
 
-<%= form_with model: @booking do |form| %>
+<%= form_for @booking do |form| %>
   <ul>
     <%= form.fields_for :passengers do |passenger_form| %>
       <li>
@@ -18,5 +18,6 @@
       </li>
     <% end %>
   </ul>
+  <%= form.hidden_field :flight_id, value: params[:flight_id] %>
   <%= form.submit "Book" %>
 <% end %>
