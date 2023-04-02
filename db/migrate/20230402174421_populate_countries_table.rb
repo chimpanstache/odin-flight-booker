@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PopulateCountriesTable < ActiveRecord::Migration[7.0]
+
+  #taken from https://github.com/mm1/country-list/blob/master/migration_create_countries.rb
   def self.up
     Country.create(name: 'Afghanistan', iso3: 'AFG', iso2: 'AF', numcode: 4)
     Country.create(name: 'Åland Islands', iso3: 'ALA', iso2: 'AX', numcode: 248)
