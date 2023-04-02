@@ -8,8 +8,8 @@
 Flight.delete_all
 Airport.delete_all
 
-2.times do
-  Airport.create(country: Faker::Address.country,
+10.times do
+  Airport.create(country_id: Country.all.sample.id,
                  city: Faker::Address.city,
                  name: Faker::Name.unique.name,
                  code: [*'A'..'Z'].sample(3).join)
