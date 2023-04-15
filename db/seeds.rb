@@ -8,7 +8,10 @@
 Flight.delete_all
 Airport.delete_all
 Country.delete_all
-# creating Country table
+
+# creating Country table data
+# taken from https://github.com/mm1/country-list/blob/master/migration_create_countries.rb
+
 Country.create(name: 'Afghanistan', iso3: 'AFG', iso2: 'AF', numcode: 4)
 Country.create(name: 'Åland Islands', iso3: 'ALA', iso2: 'AX', numcode: 248)
 Country.create(name: 'Albania', iso3: 'ALB', iso2: 'AL', numcode: 8)
