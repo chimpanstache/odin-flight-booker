@@ -5,5 +5,5 @@ class Flight < ApplicationRecord
 
   scope :research, ->(departure_id, arrival_id, date) {
     where(departure_id: departure_id, arrival_id: arrival_id, time: date)
-  } 
+  }
 end

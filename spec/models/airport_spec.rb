@@ -1,18 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Airport, type: :model do
-  context 'testing Airport model validation' do  
-    before do
-      byebug
-      country = Country.find_by(name: 'France')
-      airport = Airport.create(country_id: country.id,
-                                  city: Faker::Address.city,
-                                  name: Faker::Name.unique.name,
-                                  code: [*'A'..'Z'].sample(3).join)
-    end
-
-    it 'belongs to a Country' do
-      expect(Airport.country).to be(country)
-    end
+  describe 'Airport model relationship' do
+    it { is_expected.to belong_to(:country).class_name('Country') }
+    it { is_expected.to have_many(:arrivals).class_name('Flight').with_foreign_key(:arrival_id) }
+    it { is_expected.to have_many(:departures).class_name('Flight').with_foreign_key(:departure_id) }
   end
 end
